@@ -1,6 +1,6 @@
-#Mysql常用SQL和指令
+# Mysql常用SQL和指令
 ---
-##数据库
+## 数据库
 
 ```
 # 查看所有的数据库
@@ -12,7 +12,7 @@ DROP DATABASE k;
 # 使用这个数据库
 USE k;
 ```
-##表
+## 表
 ``` sql
 # 查看所有的表
 SHOW TABLES ;
@@ -42,8 +42,10 @@ SHOW COLUMNS FROM n;
 EXPLAIN n;
 # 查看表的创建语句
 SHOW CREATE TABLE n;
-表的结构
+```
 
+## 表的结构
+``` sql
 # 添加字段
 ALTER TABLE n ADD age VARCHAR(2) ;
 # 删除字段
@@ -53,7 +55,7 @@ ALTER TABLE n CHANGE age a INT;
 # 只更改字段属性
 ALTER TABLE n MODIFY age VARCHAR(7) ;
 ```
-##表的数据
+## 表的数据
 ``` sql
 # 增加数据
 INSERT INTO n VALUES (1, 'tom', '23'), (2, 'john', '22');
@@ -67,7 +69,7 @@ SELECT * FROM n WHERE name LIKE '%h%';
 # 数据排序(反序)
 SELECT * FROM n ORDER BY name, id DESC ;
 ```
-##键
+## 键
 ``` sql
 # 添加主键
 ALTER TABLE n ADD PRIMARY KEY (id);
@@ -95,7 +97,7 @@ CREATE INDEX i_age ON n(age);
 DROP INDEX u_name ON n;
 DROP INDEX i_age ON n;
 ```
-##视图
+## 视图
 ``` sql
 # 创建视图
 CREATE VIEW v AS SELECT id, name FROM n;
@@ -111,7 +113,7 @@ ALTER VIEW v AS SELECT name FROM n ;
 # 删除视图
 DROP VIEW IF EXISTS v;
 ```
-##联接
+## 联接
 ``` sql
 # 内联接
 SELECT * FROM m INNER JOIN n ON m.id = n.id;
@@ -127,7 +129,7 @@ SELECT id,name FROM m
 UNION
 SELECT id,name FROM n;
 ```
-##函数
+## 函数
 ``` sql
 # 聚合函数
 SELECT count(id) AS total FROM n;   # 总数
@@ -201,7 +203,7 @@ SELECT user();    # 当前用户-root@localhost
 SELECT version();   # 当前mysql版本
 SELECT found_rows();    # 返回上次查询的检索行数
 ```
-##用户
+## 用户
 ``` sql
 
 # 增加用户
@@ -222,7 +224,7 @@ FLUSH PRIVILEGES ;   # 刷新系统权限表,使授予权限生效
 # 撤销用户授权
 REVOKE DELETE ON *.* FROM 'test'@'localhost';   # 取消该用户的删除权限
 ```
-##存储过程
+## 存储过程
 ```sql
 # 创建存储过程
 DELIMITER //    # 无参数
@@ -260,7 +262,7 @@ SET @i = 1;
 CALL getDates_4(@i);
 SELECT @i;    # @i = 2
 ```
-##其他语句
+## 其他语句
 ``` sql
 # 查看所有的表信息（包括视图）
 SHOW TABLE STATUS;
